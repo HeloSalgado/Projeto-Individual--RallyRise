@@ -1,0 +1,179 @@
+#banner {
+    background: url(../assets/imgs/fundo-banner2.jpg);
+    background-size: cover;
+    height: 650px;
+    display: flex;
+    width: 100%;
+}
+
+#degrade {
+    background: linear-gradient(360deg, #ffffff -2.29%, rgb(217, 217, 217) 14.41%, rgba(217, 217, 217, 0.345) 45.39%, rgba(217, 217, 217, 0.153) 65.35%, rgba(217, 217, 217, 0.02) 77.15%, rgba(217, 217, 217, 0.00) 100%);
+    height: 650px;
+    width: 100%;
+}
+
+#banner .container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.container .titulo1 {
+    width: 180px;
+    font-size: 50px;
+    color: #ffffff;
+    align-self: center;
+    font-weight: 900;
+    margin-right: 200px;
+    transform: translateX(80px);
+    animation: slide 1s forwards ease-in-out;
+}
+
+/* ------------------ fim banner --------------- */
+
+#fundamentos {
+    width: 100%;
+    height: 500px;
+}
+
+#fundamentos .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.bola {
+    width: 150px;
+    height: 150px;
+    background-color: #4E0976;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 3px 5px #636b80;
+}
+
+.bola:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #4E0976;
+    border-radius: 50px;
+    min-width: 150px;
+    width: fit-content  ;
+    height: fit-content;
+    min-height: 230px;
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.74);
+    z-index: 1;
+    padding: 2%;
+}
+
+
+.dropdown-content p {
+    font-size: 17px;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    width: 180px;
+}
+
+.bola img {
+    width: 100px;
+}
+
+.figuras-fundamentos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo h3 {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.card-fundamentos {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-fundamentos h3 {
+    font-size: 22px;
+}
+
+/* ---------------- fim fundamentos ---------------- */
+#historia {
+    width: 100%;
+    height: 600px;
+    background-color: #4E0976;
+}
+
+#historia .container {
+    display: flex;
+}
+/* ---------------- fim historia do volei --------------- */
+#footer {
+    width: 100%;
+    height: 150px;
+    background-color: #F6E6FF;
+}
+
+#footer .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .emcima {
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .embaixo {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.embaixo p {
+    font-size: 12px;
+    color: #4E0976;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.logo img{
+    width: 120px;
+}
+
+.social {
+    align-items: center;
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.social img {
+    width: 25px;
+}
+
+hr {
+    width: 100%;
+    border: 0.5px solid #4E0976;
+}
