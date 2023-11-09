@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="../css/style-header-escuro.css">
-    <link rel="stylesheet" href="../css/style-login.css">
+    <link rel="stylesheet" href="../css/style-cadastro.css">
     <link rel="stylesheet" href="../css/style-footer.css">
     <link rel="shortcut icon" href="../assets/imgs/header-footer/logo-rallyrise-clara.png" type="image/x-icon">
-
     <script src="../js/login.js"></script>
 </head>
 
@@ -26,22 +25,41 @@
                 </ul>
             </div>
             <div class="conta">
-                <h3><a href="#">Login</a></h3>
+                <h3><a href="login.html">Login</a></h3>
                 <div class="cadastro">
-                    <h3><a href="cadastro.html">Cadastre-se</a></h3>
+                    <h3><a href="#">Cadastre-se</a></h3>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="login">
+        <div class="figuraTexto">
+            <div class="textoVolta">
+                <p>SEJA BEM VINDO(A)!</p>
+            </div>
+            <div class="figura">
+                <div class="degrade">
+                </div>
+            </div>
+        </div>
         <div class="formulario">
             <div class="card-login">
                 <div class="form">
-                    <h2>Entre na sua conta!</h2>
+                    <h2>Crie uma conta aqui!</h2>
+                    <div class="campo">
+                        <input type="text" id="nome_usuario" required>
+                        <span class="placeholder">Nome</span>
+                        <i></i>
+                    </div>
                     <div class="campo">
                         <input type="text" id="email_usuario" required>
                         <span class="placeholder">Email</span>
+                        <i></i>
+                    </div>
+                    <div class="campoDate">
+                        <input type="date" id="idade_usuario" required>
+                        <span class="placeholder">Data de Nascimento</span>
                         <i></i>
                     </div>
                     <div class="campo">
@@ -57,16 +75,7 @@
                         <div id="msg_criterios2"></div>
                     </div>
                     <button onclick="entrarNaConta()">Entrar</button>
-                    <p>Não possui uma conta? <a href="cadastro.html">Cadastre-se agora!</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="figuraTexto">
-            <div class="textoVolta">
-                <p>SEJA BEM VINDO(A) DE VOLTA!</p>
-            </div>
-            <div class="figura">
-                <div class="degrade">
+                    <p>Já possui uma conta? <a href="login.html">Entre agora!</a></p>
                 </div>
             </div>
         </div>

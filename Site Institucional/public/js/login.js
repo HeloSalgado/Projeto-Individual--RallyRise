@@ -1,20 +1,17 @@
-var listaNome = [];
 var listaEmail = [];
 var listaSenha = [];
 var listaConfirmarSenha = [];
 
 function entrarNaConta() {
-    var nome = nome_usuario.value;
     var email = email_usuario.value;
     var senha = senha_usuario.value;
     var confirmarSenha = confirmacao_senha.value;
 
 
-    if (nome != '' || email != '' || senha != '' || confirmarSenha != '') {
+    if (email != '' || senha != '' || confirmarSenha != '') {
         if (email.indexOf('@') > 0 && email.indexOf('.com') > 0) {
             if (email.indexOf('gmail') > 0 || email.indexOf('hotmail') > 0 || email.indexOf('outlook') > 0) {
                 if (senha.length >= 8 && confirmarSenha == senha) {
-                    listaNome.push(nome);
                     listaEmail.push(email);
                     listaSenha.push(senha);
                     listaConfirmarSenha.push(confirmarSenha);
