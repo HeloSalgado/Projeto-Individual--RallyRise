@@ -53,11 +53,11 @@
                         <p id="contagem">1/5</p>
                     </div>
                     <p>Quando e por quem foi criado o vôlei?</p>   
-                    <div class="btn-respostas">
-                        <div>1895, William George Morgan</div> 
-                        <div>1881, George Cabot</div> 
-                        <div>1895, Jamie Metzl</div> 
-                        <div>1995, William George Morgan</div> 
+                    <div id="btn-respostas">
+                        <div id="resposta1a" onclick="verificarAcerto(this, this)">1895, William George Morgan</div> 
+                        <div id="resposta1b" onclick="verificarAcerto(this, this)">1881, George Cabot</div> 
+                        <div id="resposta1c" onclick="verificarAcerto(this, this)">1895, Jamie Metzl</div> 
+                        <div id="resposta1d" onclick="verificarAcerto(this, this)">1995, William George Morgan</div> 
                     </div>
                 </div>
             </div>
@@ -67,6 +67,7 @@
             <button id="btn_voltar" onclick="voltarQuiz()" style="display: none;"></button>
         </div>
     </div>
+    <div id="resultado" style="display: none;"></div>
 
     <div id="footer">
         <div class="container">
