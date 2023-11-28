@@ -1,0 +1,136 @@
+@font-face {
+    font-family: Josefin;
+    src: url(../fonte/JosefinSans-VariableFont_wght.ttf);
+}
+
+* {
+    font-family: Josefin;
+    margin: 0;
+}
+
+#janela {
+    width: 100%;
+    height: 735px;
+    background-color: #F6E6FF;
+    display: flex;
+}
+
+.header_dash {
+    height: 100%;
+    width: 20%;
+    background-color: #4E0976;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header_dash img {
+    width: 200px;
+}
+
+.hello {
+    width: 100%;
+    font-size: 18px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.abas1 {
+    min-width: 40%;
+    height: 50px;
+    display: flex;
+    font-size: 17px;
+    color: #fff;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.abas2 {
+    min-width: 50%;
+    height: 50px;
+    display: flex;
+    font-size: 17px;
+    color: #fff;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.abas3 {
+    min-width: 60%;
+    height: 50px;
+    display: flex;
+    font-size: 17px;
+    color: #fff;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.abas1 img,
+.abas2 img,
+.abas3 img {
+    width: 40px;
+}
+
+.div_logout {
+    width: 100%;
+    height: 80px;
+    background-color: #BB72E6;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -65px;
+}
+
+.logout {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #fff;
+}
+
+.logout img {
+    width: 40px;
+    height: 40px;
+}
+
+.dash {
+    width: 80%;
+    height: 640px;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.dash .titulo{
+    font-size: 30px;
+}
+
+#kpis_dash {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.kpi {
+    width: 10vw;
+    height: 15vh;
+    padding: 2%;
+    background-color: #BB72E6;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    color: #fff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 5px 2px 15px 2px #4E0976;
+}
+
+.kpi .resultados {
+    font-size: 20px;
+}

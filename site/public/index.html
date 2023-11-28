@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR | HOME</title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../css/style-header-branco.css">
+    <link rel="stylesheet" href="../css/style-index.css">
+    <link rel="stylesheet" href="../css/style-footer.css">
+    <link rel="shortcut icon" href="../assets/header-footer/logo-rallyrise-clara.png" type="image/x-icon">
+
+</head>
+
+<body onload="validarSessaoIndex()">
+    <div id="header">
+        <div class="container">
+            <img src="../assets/header-footer/logo-rallyrise.png" class="logo">
+            <div class="abas">
+                <ul>
+                    <li id="aqui"><a href="#">Home</a></li>
+                    <li><a href="#fundamentos">Fundamentos</a></li>
+                    <li><a href="#">Curiosidades</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
+                </ul>
+            </div>
+            <div class="conta">
+                <h3 id="link_login"><a href="login.html">Login</a></h3>
+                <div onclick="pageCadastrar()" id="cadastro">
+                    <h3>Cadastre-se</h3>
+                </div>
+                <div id="perfil">
+                    <img class="img-perfil" src="../assets/header-footer/perfil-header.png">
+                    <h3>Olá,</h3>
+                    <h3 id="usuario_nome">Perfil</h3>
+                    <img class="img-sair" onclick="limparSessao()" src="assets/header-footer/sair-header.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="banner">
+        <div id="degrade">
+            <div class="container">
+                <p class="titulo1">Cada Ponto Importa</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="fundamentos">
+        <div class="container">
+            <div class="titulo">
+                <h3>Fundamentos do Vôlei</h3>
+            </div>
+            <div class="figuras-fundamentos">
+                <div class="card-fundamentos">
+                    <div class="bola">
+                        <img src="../assets/fundamentos/saque-fundamentos.png" alt="Saque">
+                        <div class="dropdown-content">
+                            <img src="../assets/fundamentos/saque-fundamentos.png" width="100px" height="100px">
+                            <p>O saque é definido quando a bola é colocada em jogo.</p>
+                        </div>
+                    </div>
+                    <h3>Saque</h3>
+                </div>
+                <div class="card-fundamentos">
+                    <div class="bola">
+                        <img src="../assets/fundamentos/toque-fundamentos.png" alt="Toque">
+                        <div class="dropdown-content">
+                            <img src="../assets/fundamentos/toque-fundamentos.png" width="100px" height="100px">
+                            <p>O toque é um fundamento técnico utilizado em diversas situações no jogo, tais como:
+                                recepção, ataque e levantamento.</p>
+                        </div>
+                    </div>
+                    <h3>Toque</h3>
+                </div>
+                <div class="card-fundamentos">
+                    <div class="bola">
+                        <img src="../assets/fundamentos/manchete-fundamentos.png" alt="Manchete">
+                        <div class="dropdown-content">
+                            <img src="../assets/fundamentos/manchete-fundamentos.png" width="100px" height="100px">
+                            <p>A manchete é utilizada em situações de recepção de saque, levantamento e defesa, sendo
+                                mais comum nas recepções.</p>
+                        </div>
+                    </div>
+                    <h3>Manchete</h3>
+                </div>
+                <div class="card-fundamentos">
+                    <div class="bola">
+                        <img src="../assets/fundamentos/ataque-fundamentos.png" alt="Ataque">
+                        <div class="dropdown-content">
+                            <img src="../assets/fundamentos/ataque-fundamentos.png" width="100px" height="100px">
+                            <p>O ataque no vôlei é composto por ações de passadas de pernas, movimentação de braços e
+                                saltos.</p>
+                        </div>
+                    </div>
+                    <h3>Ataque</h3>
+                </div>
+                <div class="card-fundamentos">
+                    <div class="bola">
+                        <img src="../assets/fundamentos/defesa-fundamentos.png" alt="Defesa">
+                        <div class="dropdown-content">
+                            <img src="../assets/fundamentos/defesa-fundamentos.png" width="100px" height="100px">
+                            <p>A defesa no voleibol é caracterizada por ações técnicas que garantem a manutenção da bola
+                                no jogo e possibilitam o contra-ataque.</p>
+                        </div>
+                    </div>
+                    <h3>Defesa</h3>
+                </div>
+                <div class="card-fundamentos">
+                    <div class="bola">
+                        <img src="../assets/fundamentos/bloqueio-fundamentos.png" alt="Bloqueio">
+                        <div class="dropdown-content">
+                            <img src="../assets/fundamentos/bloqueio-fundamentos.png" width="100px" height="100px">
+                            <p>O bloqueio faz parte do sistema defensivo do voleibol. A ação é feita por dois jogadores
+                                ou mais que ficam próximos à rede na intenção de bloquear a bola.</p>
+                        </div>
+                    </div>
+                    <h3>Bloqueio</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="curiosidades">
+        <div class="container">
+        </div>
+    </div>
+
+    <div id="jogadores">
+        <h1>Conheça alguns dos principais jogadores do Brasil!</h1>
+        <div class="carrossel">
+            <img onclick="setaEsquerda()" class="seta" src="assets/jogadores/seta-esquerda.png">
+            <div class="container">
+                <div id="fileira">
+                    <div class="curiosidadeJogador 1">
+                        <img class="jogador" src="assets/jogadores/jogadora_gabi.png">
+                        <div class="conteudo">
+                            <h3>Gabriela Guimarães</h3>
+                            <p>Atualmente com 29 anos e 1,80 de altura, atua na posição de ponta, medalhista de prata
+                                nos Jogos Olímpicos de Tóquio 2020</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 2">
+                        <img class="jogador" src="assets/jogadores/jogador_bruno.png">
+                        <div class="conteudo">
+                            <h3>Bruninho</h3>
+                            <p>Com 1,90 de altura, atua na posição de levantador pela seleção brasileira e pelo Modena
+                                Volley. Com a Seleção Brasileira de Vôlei, colaborou com a vitória em 4 Ligas Mundiais,
+                                2 Copas do Mundo, 2 Pan-Americanos, 2 pratas e 1 ouro em Jogos Olímpicos.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 3">
+                        <img class="jogador" src="assets/jogadores/jogadora_fabi.png">
+                        <div class="conteudo">
+                            <h3>Fabiana Alvim</h3>
+                            <p>Atualmente com 43 anos é ex-jogadora de voleibol brasileira, bicampeã olímpica em Pequim
+                                2008 e Londres 2012. Ela atuava na posição de líbero. Hoje em dia é comentarista
+                                esportiva.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 4">
+                        <img class="jogador" src="assets/jogadores/jogador_giba.png">
+                        <div class="conteudo">
+                            <h3>Giba</h3>
+                            <p>Com 46 anos é um ex-jogador de voleibol brasileiro. Atuava na posição de atacante de
+                                ponta e conquistou os principais títulos pela Seleção Brasileira, sendo oito vezes
+                                medalha de ouro na Liga Mundial, tricampeão mundial e ouro olímpico em 2004 e prata em
+                                2008 e 2012.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 5">
+                        <img class="jogador" src="assets/jogadores/jogadora_fabiana.png">
+                        <div class="conteudo">
+                            <h3>Fabiana Claudino</h3>
+                            <p>É uma jogadora de voleibol brasileira que atua na posição de meio de rede. Suas
+                                principais funções em sua posição são bloqueio e ataque. E sagrou-se campeã olímpica nos
+                                Jogos de 2008 e 2012.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 6">
+                        <img class="jogador" src="assets/jogadores/jogador_mauricio.png">
+                        <div class="conteudo">
+                            <h3>Maurício Lima</h3>
+                            <p>Ex-jogador de voleibol brasileiro, bicampeão olímpico em Barcelona 92 e Atenas 2004, como
+                                levantador da equipe medalha de ouro. Atualmente, com 55 anos, apresenta o Vendo no
+                                Vôlei na Rádio Jovem Pan.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 7">
+                        <img class="jogador" src="assets/jogadores/jogadora_sheilla.png">
+                        <div class="conteudo">
+                            <h3>Sheilla Castro</h3>
+                            <p>Bicampeã olímpica, heptacampeã do Grand Prix, bicampeã da Superliga Feminina e campeã
+                                mundial interclubes. Atuava na posição de oposto, se aposentando em 2022. Hoje ela é
+                                treinadora assistente da seleção brasileira. </p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 8">
+                        <img class="jogador" src="assets/jogadores/jogador_giovani.png">
+                        <div class="conteudo">
+                            <h3>Giovani</h3>
+                            <p>É um treinador e ex-jogador de voleibol brasileiro. Giovane foi um dos protagonistas da
+                                conquista da primeira medalha de ouro, em Atenas 2004, e um dos mais experientes do
+                                grupo que chegou ao bicampeonato em Atenas 2004.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 9">
+                        <img class="jogador" src="assets/jogadores/jogadora_fernanda.png">
+                        <div class="conteudo">
+                            <h3>Fernanda Venturini</h3>
+                            <p>Ex-jogadora de vôlei que se destacou na posição de levantadora, tanto em clubes quanto
+                                pela Seleção Brasileira. É recordista de títulos nacionais e bicampeã mundial de clubes.
+                                Pela Seleção Brasileira, foi medalhista olímpica, mundial e pan-americana.</p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 10">
+                        <img class="jogador" src="assets/jogadores/jogador_renan.png">
+                        <div class="conteudo">
+                            <h3>Renan Dal Zotto</h3>
+                            <p>Ex-voleibolista e treinador de voleibol. Atualmente está sem clube. Como atleta, foi um
+                                dos maiores nomes do esporte nas décadas de 1980 e 1990, alcançando sucesso absoluto em
+                                quadras defendendo a Seleção Brasileira e clubes nacionais e italianos. </p>
+                        </div>
+                    </div>
+                    <div class="curiosidadeJogador 11">
+                        <img class="jogador" src="assets/jogadores/jogadora_jaque.jpg">
+                        <div class="conteudo">
+                            <h3>Jaqueline Carvalho</h3>
+                            <p>Dois momentos marcantes de sua carreira foram as medalhas de ouro nos Jogos Olímpicos de 2008 e 2012. A ponta também conquistou duas pratas e um bronze com a seleção adulta em Campeonatos Mundiais. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img onclick="setaDireita()" class="seta" src="assets/jogadores/seta-direita.png">
+        </div>
+    </div>
+
+    <div class="sobre_mim">
+        <div class="container">
+            <div class="texto">
+                <Span>Quer saber um pouco sobre mim
+                    e a minha história com o vôlei?
+                </Span>
+                <button onclick="sobreMim()">Venha me conhecer!</button>
+            </div>
+            <img src="../assets/sobre-mim/figura-sobremim.svg">
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="emcima">
+                <div class="logo">
+                    <a href="#header"><img src="../assets/header-footer/logo-rallyrise.png"></a>
+                </div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/in/heloisa-salgado-30a312284/"><img
+                            src="../assets/header-footer/linkedin-footer.png"></a>
+                    <a href="#"><img src="../assets/header-footer/facebook-footer.png"></a>
+                    <a href="#"><img src="../assets/header-footer/intagram-footer.png"></a>
+                </div>
+            </div>
+            <hr>
+            <div class="embaixo">
+                <p><a href="#">Privacidade e Segurança | Termos e Condições</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var fileira = document.getElementById('fileira');
+
+    var slider = 0
+
+    function setaDireita() {
+
+        if (slider >= 6) {
+            fileira.style.transform = 'none';
+
+            setTimeout(() => {
+                fileira.style.transform = 'translateX(0)';
+                slider = 0
+            }, 1000);
+        } else {
+            fileira.style.transform += 'translateX(-150px)';
+            fileira.style.transition = '.70s'
+        }
+
+        slider++
+
+    }
+
+    function setaEsquerda() {
+
+        if (slider >= 6) {
+            fileira.style.transform = 'none';
+
+            setTimeout(() => {
+                fileira.style.transform = 'translateX(0)';
+                slider = 0
+
+            }, 1500);
+
+        } else {
+            fileira.style.transform += 'translateX(150px)';
+            fileira.style.transition = '.70s'
+        }
+
+        slider++
+    }
+
+    function sobreMim() {
+        window.open('sobre_mim.html')
+    }
+
+    function pageCadastrar() {
+        window.open('cadastro.html')
+    }
+
+
+</script>

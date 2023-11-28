@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Vôlei</title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../css/style-header-branco.css">
+    <link rel="stylesheet" href="../css/style-quiz.css">
+    <link rel="stylesheet" href="../css/style-footer.css">
+
+    <link rel="shortcut icon" href="../assets/header-footer/logo-rallyrise-clara.png" type="image/x-icon">
+</head>
+
+<body onload="validarSessao()">
+    <div id="header">
+        <div class="container">
+            <img src="../assets/header-footer/logo-rallyrise.png" class="logo">
+            <div class="abas">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">Fundamentos</a></li>
+                    <li><a href="#">Curiosidades</a></li>
+                    <li><a href="#">Quiz</a></li>
+                </ul>
+            </div>
+            <div class="conta">
+                <h3 id="link_login"><a href="login.html">Login</a></h3>
+                <div onclick="pageCadastrar()" id="cadastro">
+                    <h3>Cadastre-se</h3>
+                </div>
+                <div id="perfil">
+                    <img class="img-perfil" src="../assets/header-footer/perfil-header.png">
+                    <h3>Olá,</h3>
+                    <h3 id="usuario_nome"></h3>
+                    <img class="img-sair" onclick="limparSessao()" src="assets/header-footer/sair-header.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="banner">
+        <div id="degrade">
+            <div class="container">
+                <!-- <img src="../assets/imgs/sobre-mim/bola-sobremim.png"> -->
+                <p class="titulo1">Será que você conhece <b>tudo</b> sobre vôlei?</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="quiz">
+        <div class="pergunta">
+            <div id="imagemPergunta">
+                <img src="../assets/quiz/pergunta1-quiz.jpg" alt="">
+            </div>
+            <div id="textoPergunta">
+                <div class="container">
+                    <div class="tituloContagem">
+                        <p>Pergunta 1</p>
+                        <div id="pontuacao">
+                            <p id="contagem">1/5</p>
+                            <p>Pontuação: 0</p>
+                        </div>
+                    </div>
+                    <p>Quando e por quem foi criado o vôlei?</p>
+                    <div id="btn-respostas">
+                        <div onclick="processarQuestao('1895, William George Morgan')">1895, William George Morgan</div>
+                        <div onclick="processarQuestao('1881, George Cabot')">1881, George Cabot</div>
+                        <div onclick="processarQuestao('1895, Jamie Metzl')">1895, Jamie Metzl</div>
+                        <div onclick="processarQuestao('1995, William George Morgan')">1995, William George Morgan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="resultado" style="display: none;"></div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="emcima">
+                <div class="logo">
+                    <a href="#header"><img src="../assets/header-footer/logo-rallyrise.png"></a>
+                </div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/in/heloisa-salgado-30a312284/"><img
+                            src="../assets/header-footer/linkedin-footer.png"></a>
+                    <a href="#"><img src="../assets/header-footer/facebook-footer.png"></a>
+                    <a href="#"><img src="../assets/header-footer/intagram-footer.png"></a>
+                </div>
+            </div>
+            <hr>
+            <div class="embaixo">
+                <p><a href="#">Privacidade e Segurança | Termos e Condições</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var listaTitulo = ['Pergunta 1', 'Pergunta 2', 'Pergunta 3', 'Pergunta 4', 'Pergunta 5'];
+    var listaPergunta = ['Quando e por quem foi criado o vôlei?', 'Qual jogador que realiza o saque?', 'A Federação Internacional de Voleibol foi criada em que ano?', 'Qual foi o primeiro clube de voleibol nacional?', 'Como era chamado o esporte na época em que foi criado?']
+    var listaRespostaA = ['1895, William George Morgan', 'O jogador na posição 6', '1947', 'Botafogo', 'Bossabol']
+    var listaRespostaB = ['1881, George Cabot', 'O jogador na posição 4', '1939', 'Grêmio', 'Sepaktakraw']
+    var listaRespostaC = ['1895, Jamie Metzl', 'O jogador na posição 1', '1885', 'São Paulo', 'Tênis']
+    var listaRespostaD = ['1995, William George Morgan', 'O jogador na posição 2', '1921', 'Fluminense', 'Mintonette']
+    var listaImagens = ['../assets/quiz/pergunta1-quiz.jpg', '../assets/quiz/pergunta2-quiz.png', '../assets/quiz/pergunta3-quiz2.jpg', '../assets/quiz/pergunta4-quiz.jpg', '../assets/quiz/pergunta5-quiz.jpg'];
+
+    var pontos = 0;
+    var repeticao = 0
+    var mensagemFinal = '';
+
+    function processarQuestao(resposta) {
+        if (repeticao == 0) {
+            if (resposta == listaRespostaA[repeticao]) {
+                questaoCerta()
+            } else {
+                questaoErrada()
+            }
+        } else if (repeticao == 1) {
+            if (resposta == listaRespostaC[repeticao]) {
+                questaoCerta()
+            } else {
+                questaoErrada()
+            }
+        } else if (repeticao == 2) {
+            if (resposta == listaRespostaA[repeticao]) {
+                questaoCerta()
+            } else {
+                questaoErrada()
+            }
+        } else if (repeticao == 3) {
+            if (resposta == listaRespostaD[repeticao]) {
+                questaoCerta()
+            } else {
+                questaoErrada()
+            }
+        } else if (repeticao == 4) {
+            if (resposta == listaRespostaD[repeticao]) {
+                questaoCerta()
+            } else {
+                questaoErrada()
+            }
+        }
+    }
+
+
+    function questaoCerta() {
+        pontos += 20;
+
+        avancarQuestao()
+
+    }
+
+    function questaoErrada() {
+
+        avancarQuestao()
+
+    }
+
+    function reiniciarQuiz() {
+        repeticao = 0
+        pontos = 0
+        var confirmacao = confirm('Deseja mesmo recomeçar? Isso ira zerar seus pontos.')
+
+        if (confirmacao == true) {
+            resultado.style.display = 'none'
+            banner.style.display = 'flex'
+            quiz.style.display = 'flex';
+
+            textoPergunta.innerHTML = `
+                <div class="container">
+                <div class="tituloContagem">
+                    <p>${listaTitulo[repeticao]}</p>
+                    <div id="pontuacao">
+                        <p id="contagem">${repeticao + 1}/${listaPergunta.length}</p>
+                        <p>Pontuação: ${pontos}</p>
+                    </div>
+                </div>
+                    <p>${listaPergunta[repeticao]}</p>   
+                <div id="btn-respostas">
+                    <div onclick="processarQuestao('${listaRespostaA[repeticao]}')">${listaRespostaA[repeticao]}</div> 
+                    <div onclick="processarQuestao('${listaRespostaB[repeticao]}')">${listaRespostaB[repeticao]}</div> 
+                    <div onclick="processarQuestao('${listaRespostaC[repeticao]}')">${listaRespostaC[repeticao]}</div> 
+                    <div onclick="processarQuestao('${listaRespostaD[repeticao]}')">${listaRespostaD[repeticao]}</div> 
+                </div>
+                </div>
+                `;
+        }
+
+    }
+
+    function avancarQuestao() {
+        repeticao++
+
+        if (repeticao <= 4) {
+            imagemPergunta.innerHTML = `<img src="${listaImagens[repeticao]}">`
+
+            textoPergunta.innerHTML = `
+            <div class="container">
+            <div class="tituloContagem">
+                <p>${listaTitulo[repeticao]}</p>
+                <div id="pontuacao">
+                    <p id="contagem">${repeticao + 1}/${listaPergunta.length}</p>
+                    <p>Pontuação: ${pontos}</p>
+                </div>
+            </div>
+                <p>${listaPergunta[repeticao]}</p>   
+            <div id="btn-respostas">
+                <div onclick="processarQuestao('${listaRespostaA[repeticao]}')">${listaRespostaA[repeticao]}</div> 
+                <div onclick="processarQuestao('${listaRespostaB[repeticao]}')">${listaRespostaB[repeticao]}</div> 
+                <div onclick="processarQuestao('${listaRespostaC[repeticao]}')">${listaRespostaC[repeticao]}</div> 
+                <div onclick="processarQuestao('${listaRespostaD[repeticao]}')">${listaRespostaD[repeticao]}</div> 
+            </div>
+            </div>
+        `;
+        } else {
+            cadastrar()
+
+            if (pontos <= 40) {
+                mensagemFinal = 'ihh, tá precisando treinar mais!'
+            } else if (pontos < 70) {
+                mensagemFinal = 'Está indo bem, mas pode melhorar!'
+            } else {
+                mensagemFinal = 'Você conhece mesmo em?! Bom trabalho!'
+            }
+
+            resultado.style.display = 'flex'
+            banner.style.display = 'none'
+            quiz.style.display = 'none';
+            resultado.innerHTML = `
+            <div class="container"> 
+                <div class="div_resultado">
+                    <div class="header_resultado">
+                        <img src="../assets/sobre-mim/bola-sobremim.png">
+                        <div class="bolas">
+                            <div class="bola"></div>
+                            <div class="bola"></div>
+                            <div class="bola"></div>
+                        </div>
+                    </div>
+                    <div id="textoResultado">
+                        <h3> Obrigada por participar! </h3>
+                        <h4> Pontuação: ${pontos} </h4>
+                        <h4> ${mensagemFinal} </h4>
+                        <button onclick="reiniciarQuiz()" class="reiniciar">Reiniciar</button> 
+                    </div>
+                </div>
+            </div>
+            `
+        }
+    }
+
+    function cadastrar() {
+        var pontosVar = pontos;
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        // Enviando o valor da nova input
+        fetch(`/quiz/cadastrar`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pontosServer: pontosVar,
+                idUsuarioServer: idUsuario
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO cadastrar()!")
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o cadastro!");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function pageCadastrar() {
+        window.open('cadastro.html')
+    }
+</script>

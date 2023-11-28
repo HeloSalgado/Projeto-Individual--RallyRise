@@ -1,0 +1,70 @@
+#sobre-mim {
+    width: 100%;
+    height: 1500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fotoEu {
+    background: url(../assets/sobre-mim/eujogando2.JPG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.3);
+    width: 100%;
+    height: 20%;
+}
+
+.textoSobreMim {
+    width: 100%;
+    height: 80%;
+    background-color: #4E0976;
+}
+
+.textoSobreMim .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.titulo h3 {
+    color: white;
+    font-size: 30px;
+}
+
+.titulo img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.titulo {
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.texto {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.texto p {
+    color: white;
+    font-size: 25px;
+    width: 50%;
+    text-align: justify;
+}
+
+.texto img:hover {
+    width: 300px;
+    transition: .3s ease-in-out;
+}
+
+.texto img {
+    width: 250px;
+    position: relative;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR | LOGIN</title>
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../css/style-header-escuro.css">
+    <link rel="stylesheet" href="../css/style-login.css">
+    <link rel="stylesheet" href="../css/style-footer.css">
+    <link rel="shortcut icon" href="../assets/header-footer/logo-rallyrise-clara.png" type="image/x-icon">
+
+    <!-- <script src="../js/login.js"></script> -->
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <img src="../assets/header-footer/logo-rallyrise-clara.png" class="logo">
+            <div class="abas">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre_mim.html">Sobre mim</a></li>
+                    <li><a href="#">Curiosidades</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
+                </ul>
+            </div>
+            <div class="conta">
+                <h3 id="link_login"><a href="login.html">Login</a></h3>
+                <div onclick="pageCadastrar()" id="cadastro">
+                    <h3>Cadastre-se</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="login">
+        <div class="formulario">
+            <div class="card-login">
+                <div class="form">
+                    <div id="tituloErro">
+                        <h2>Entre na sua conta!</h2>
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErro">
+                                <span id="mensagem_erro"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="email_usuario" required>
+                        <span class="placeholder">Email</span>
+                        <i></i>
+                    </div>
+                    <div class="campo">
+                        <input type="password" onkeyup="senha()" id="senha_usuario" required>
+                        <span class="placeholder">Senha</span>
+                        <i id="cor_senha"></i>
+                        <div id="msg_criterios"></div>
+                    </div>
+                    <button onclick="entrar()">Entrar</button>
+                    <p>Não possui uma conta? <a href="cadastro.html">Cadastre-se agora!</a></p>
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/circle-loading.gif" id="loading-gif">
+                    </div>
+
+                    <div id="div_erros_login"></div>
+                </div>
+            </div>
+        </div>
+        <div class="figuraTexto">
+            <div class="textoVolta">
+                <p>SEJA BEM VINDO(A) DE VOLTA!</p>
+            </div>
+            <div class="figura">
+                <div class="degrade">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="emcima">
+                <div class="logo">
+                    <a href="#header"><img src="../assets/header-footer/logo-rallyrise.png"></a>
+                </div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/in/heloisa-salgado-30a312284/"><img
+                            src="../assets/header-footer/linkedin-footer.png"></a>
+                    <a href="#"><img src="../assets/header-footer/facebook-footer.png"></a>
+                    <a href="#"><img src="../assets/header-footer/intagram-footer.png"></a>
+                </div>
+            </div>
+            <hr>
+            <div class="embaixo">
+                <p><a href="#">Privacidade e Segurança | Termos e Condições</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_usuario.value;
+        var senhaVar = senha_usuario.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Todos os campos devem ser preenchidos";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+
+                    if (sessionStorage.ID_USUARIO == '1') {
+                        setTimeout(function () {
+                            window.location = "./dashboard/dashboard.html";
+                        }, 1000); // apenas para exibir o loading
+                    } else {
+                        setTimeout(function () {
+                            window.location = "index.html";
+                        }, 1000); // apenas para exibir o loading
+                    }
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+    function senha() {
+        var senha = senha_usuario.value;
+
+        if (senha.length < 1) {
+            senha_usuario.style.borderBottom = '';
+            msg_criterios.innerHTML = ''
+        } else if (senha.length >= 1 && senha.length < 8) {
+            senha_usuario.style.borderBottom = '4px solid red'
+            msg_criterios.innerHTML = '<img id="verificado" src="../assets/cadastro-login/verificado-vermelho.png"> 8 caracteres'
+        } else {
+            senha_usuario.style.borderBottom = '4px solid green'
+            msg_criterios.innerHTML = '<img id="verificado" src="../assets/cadastro-login/verificado-verde.png"> 8 caracteres'
+        }
+    }
+
+
+    function pageCadastrar() {
+        window.open('cadastro.html')
+    }
+
+</script>
