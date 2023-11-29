@@ -13,7 +13,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body">
     <div id="janela">
         <div class="header_dash">
             <img src="../assets/header-footer/logo-rallyrise-clara.png">
@@ -51,7 +51,7 @@
             <div id="kpis_dash">
                 <div class="kpi">
                     <h4>Total de usuários cadastrados</h4>
-                    <h4 id="totalUsuarios" class="resultados">25</h4>
+                    <h4 id="totalUsuarios" class="resultados"></h4>
                 </div>
                 <div class="kpi">
                     <h4>Idade média dos usuários</h4>
@@ -77,9 +77,9 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    // totalUsuarios.innerHTML = ``
-    // idadeMedia.innerHTML = 
-    // acertosMedia.innerHTML = 
+    // totalUsuarios.innerHTML = sessionStorage.TOTAL_USUARIOS;
+    // idadeMedia.innerHTML = sessionStorage.IDADE_MEDIA;
+    // acertosMedia.innerHTML = sessionStorage.ACERTOS_MEDIA;
 
     let proximaAtualizacao;
 
