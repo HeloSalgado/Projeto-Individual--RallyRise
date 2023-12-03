@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../css/style-footer.css">
     <link rel="shortcut icon" href="../assets/header-footer/logo-rallyrise-clara.png" type="image/x-icon">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
 </head>
 
 <body onload="validarSessaoIndex()">
@@ -229,7 +232,9 @@
                         <img class="jogador" src="assets/jogadores/jogadora_jaque.jpg">
                         <div class="conteudo">
                             <h3>Jaqueline Carvalho</h3>
-                            <p>Dois momentos marcantes de sua carreira foram as medalhas de ouro nos Jogos Olímpicos de 2008 e 2012. A ponta também conquistou duas pratas e um bronze com a seleção adulta em Campeonatos Mundiais. </p>
+                            <p>Dois momentos marcantes de sua carreira foram as medalhas de ouro nos Jogos Olímpicos de
+                                2008 e 2012. A ponta também conquistou duas pratas e um bronze com a seleção adulta em
+                                Campeonatos Mundiais. </p>
                         </div>
                     </div>
                 </div>
@@ -247,6 +252,23 @@
                 <button onclick="sobreMim()">Venha me conhecer!</button>
             </div>
             <img src="../assets/sobre-mim/figura-sobremim.svg">
+        </div>
+    </div>
+
+    <div id="feedback">
+        <div class="container">
+            <div class="containerFeedback">
+                <h3>Gostou do conteúdo? Deixe um feedback, sua opinião é importante para nós!</h3>
+                <div class="campo">
+                    <p>Título</p>
+                    <input id="titulo" maxlength="20">
+                </div>
+                <div class="campo">
+                    <p>Descrição</p>
+                    <input id="descricao" placeholder="Corpo da mensagem" maxlength="100">
+                </div>
+                <button id="enviar" onclick="enviarFeedback()">Enviar</button>
+            </div>
         </div>
     </div>
 
@@ -313,6 +335,56 @@
         }
 
         slider++
+    }
+
+    function enviarFeedback() {
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var tituloVar = titulo.value;
+        var descricaoVar = descricao.value;
+        var fkUsuarioVar = sessionStorage.ID_USUARIO;
+        var nome = sessionStorage.NOME_USUARIO
+
+
+        if (tituloVar == "" || descricaoVar == "") {
+            alert("Todos os campos devem ser preenchidos")
+
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/feedback", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                tituloServer: tituloVar,
+                descricaoServer: descricaoVar,
+                fkUsuarioServer: fkUsuarioVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    Swal.fire(`Feedback enviado com sucesso, ${nome}!`);
+                    limparFormulario();
+                } else {
+                    throw "Houve um erro para enviar o feedback!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+
+    function limparFormulario() {
+        document.getElementById("campo").reset();
     }
 
     function sobreMim() {

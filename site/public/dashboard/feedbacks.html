@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR | FEEDBACKS</title>
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="stylesheet" href="../css/style-dashboard.css">
+
+    <link rel="icon" href="../assets/header-footer/logo-rallyrise-clara.png" type="image/x-icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+</head>
+
+<body onload="buscarnumFeedbacks(), buscar()">
+    <div id="janela">
+        <div class="header_dash">
+            <img src="../assets/header-footer/logo-rallyrise-clara.png">
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario"></span>!</h3>
+            </div>
+
+            <div class="abas">
+                <h3><img src="../assets/header-footer/botao-de-inicio.png"><a href="dashboard.html">Home</a></h3>
+
+                <h3 id="aqui"><img src="../assets/header-footer/mensagem-de-texto.png">Feedbacks</h3>
+            </div>
+
+            <div class="div_logout">
+                <img src="../assets/header-footer/sair.png" onclick="limparSessao()">
+            </div>
+        </div>
+
+        <div class="dash">
+            <h3 class="titulo">Feedbacks</h3>
+
+            <div class="feedback">
+                <div id="tabelaFeedback">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function buscarnumFeedbacks() {
+        fetch("/kpi/numfeedback", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO buscar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.NUM_FEEDBACKS = json.numFeedbacks
+
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o select!");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+
+    function buscar() {
+
+        fetch("/kpi/feedback", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO buscar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    for (i = 0; i < sessionStorage.NUM_FEEDBACKS; i++) {
+                        if (i > 2) {
+                            tabelaFeedback.style.overflowY = 'scroll';
+                        }
+
+                        tabelaFeedback.innerHTML += `
+                        <div class="feedUsuario">
+                            <h2>${json[i].nome}</h2>
+                            <hr>
+                            <h3>${json[i].titulo}</h3>
+                            <h3>${json[i].descricao}</h3>
+                            <button onclick="apagarFeedback(this)" data-id="${json[i].idFeedback}" class="apagarFeed">Apagar Feedback</button>
+                        </div> <br>
+                        `
+                    }
+
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o select!");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function apagarFeedback(botao) {
+        var idFeedback = botao.getAttribute("data-id");
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Você tem certeza?",
+            text: "Essa ação não pode ser revertida!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sim, delete isso!",
+            cancelButtonText: "Não, cancele!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/kpi/deletar`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        idFeedbackServer: idFeedback
+                    }),
+                }).then(function (resposta) {
+                    if (resposta.ok) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Deletado!",
+                            text: "Feedback deletado com sucesso.",
+                            icon: "success"
+                        });
+
+                        window.location = './feedbacks.html'
+                    } else if (resposta.status == 404) {
+                        window.alert("Deu 404!");
+                    } else {
+                        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelado",
+                    text: "Seu feedback ainda está a salvo :)",
+                    icon: "error"
+                });
+            }
+        });
+    }
+
+
+</script>

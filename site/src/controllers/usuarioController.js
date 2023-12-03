@@ -22,9 +22,6 @@ function autenticar(req, res) {
                         id: resultadoAutenticar[0].idUsuario,
                         email: resultadoAutenticar[0].email,
                         nome: resultadoAutenticar[0].nome
-                        // totalUsuarios: resultadoAutenticar[0].total_usuarios,
-                        // idadeMedia: resultadoAutenticar[0].media_idade,
-                        // acertosMedia: resultadoAutenticar[0].media_pontos
                     });
 
                 } else if (resultadoAutenticar.length == 0) {
@@ -81,7 +78,41 @@ function cadastrar(req, res) {
     }
 }
 
+function feedback(req, res){
+    var titulo = req.body.tituloServer;
+    var descricao = req.body.descricaoServer;
+    var fkUsuario = req.body.fkUsuarioServer
+
+    // Faça as validações dos valores
+    if (titulo == undefined) {
+        res.status(400).send("Seu titulo está undefined!");
+    } else if (descricao == undefined) {
+        res.status(400).send("Sua descrição está undefined!");
+    } else if (fkUsuario == undefined) {
+        res.status(400).send("Sua fkUsuario está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.feedback(titulo, descricao, fkUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    feedback
 }

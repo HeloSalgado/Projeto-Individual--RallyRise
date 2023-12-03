@@ -8,24 +8,6 @@ function autenticar(email, senha) {
     `;
     console.log("Executando a instrução SQL: \n" + instrucao1);
     return database.executar(instrucao1);
-    
-    // var instrucao2 = `
-    //     SELECT count(idUsuario) total_usuarios FROM usuario
-    // `
-    // console.log("Executando a instrução SQL: \n" + instrucao2);
-    // return database.executar(instrucao2);
-
-    // var instrucao3 = `
-    //     select avg(TIMESTAMPDIFF(YEAR, dtNasc, now())) as media_idade from usuario;
-    // `
-    // console.log("Executando a instrução SQL: \n" + instrucao3);
-    // return database.executar(instrucao3);
-
-    // var instrucao4 = `
-    //     select round(avg(pontuacao)) media_pontos from resultadoQuiz;
-    // `
-    // console.log("Executando a instrução SQL: \n" + instrucao4);
-    // return database.executar(instrucao4);
 
 }
 
@@ -42,7 +24,20 @@ function cadastrar(nome, email, dataNasc, senha) {
     return database.executar(instrucao);
 }
 
+function feedback(titulo, descricao, fkUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", titulo, descricao, fkUsuario);
+
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO feedback (titulo, descricao, fkUsuario) VALUES ('${titulo}', '${descricao}', '${Number(fkUsuario)}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    feedback
 };

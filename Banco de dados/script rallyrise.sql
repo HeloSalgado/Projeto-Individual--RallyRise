@@ -21,9 +21,9 @@ constraint fk_usuario foreign key (fkUsuario) references usuario(idUsuario)
 select * from usuario;
 select * from resultadoQuiz;	
 
+select max(idUsuario) from usuario group by idUsuario;
 select nome, TIMESTAMPDIFF(YEAR, dtNasc, now()) AS idade from usuario;
 select avg(TIMESTAMPDIFF(YEAR, dtNasc, now())) as Média_idade from usuario;
-select count(idUsuario) Total_usuarios from usuario;
 select round(avg(pontuacao)) from resultadoQuiz;
 select round(avg(pontuacao)) from resultadoQuiz join usuario on idUsuario = fkUsuario
  where TIMESTAMPDIFF(YEAR, dtNasc, now()) >= 18 and TIMESTAMPDIFF(YEAR, dtNasc, now()) <= 25;
@@ -32,10 +32,15 @@ select TIMESTAMPDIFF(YEAR, dtNasc, now()) AS idade,
 from resultadoQuiz 
 join usuario on fkUsuario = idUsuario group by idade;
 
-
-
 select nome, email from usuario where year(dtNasc) > 2000;
+SELECT count(idUsuario) total_usuarios, round(avg(TIMESTAMPDIFF(YEAR, dtNasc, now()))) as media_idade,  round(avg(pontuacao)) media_pontos 
+	FROM usuario join resultadoQuiz on fkUsuario = idUsuario;
 
 select dtHora 'Data e hora', pontuacao Pontuação, nome Usuário from resultadoQuiz join usuario on idUsuario = fkUsuario;
 
 select nome from usuario where nome like 'm%';
+
+  select TIMESTAMPDIFF(YEAR, dtNasc, now()) AS idade, 
+            round(avg(pontuacao)) mediaPontos 
+        from resultadoQuiz 
+        join usuario on fkUsuario = idUsuario group by idade;

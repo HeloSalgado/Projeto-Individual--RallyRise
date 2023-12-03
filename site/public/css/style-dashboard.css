@@ -10,7 +10,7 @@
 
 #janela {
     width: 100%;
-    height: 735px;
+    height: 100vh;
     background-color: #F6E6FF;
     display: flex;
 }
@@ -37,76 +37,62 @@
     justify-content: center;
 }
 
-.abas1 {
-    min-width: 40%;
-    height: 50px;
+.abas {
+    width: 100%;
+    height: 200px;
     display: flex;
     font-size: 15px;
     color: #fff;
     align-items: center;
     justify-content: space-evenly;
+    flex-direction: column;
 }
 
-.abas2 {
-    min-width: 50%;
-    height: 50px;
+.abas h3 {
+    width: 100%;
     display: flex;
-    font-size: 15px;
-    color: #fff;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
-.abas3 {
-    min-width: 60%;
-    height: 50px;
-    display: flex;
-    font-size: 15px;
-    color: #fff;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.abas1 img,
-.abas2 img,
-.abas3 img {
+.abas img {
     width: 30px;
+    margin-right: 8px;
+}
+
+.abas a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .div_logout {
     width: 100%;
-    height: 80px;
+    height: 60px;
     background-color: #BB72E6;
     display: flex;
     justify-content: center;
-    margin-bottom: -65px;
-}
-
-.logout {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    color: #fff;
+    align-self: flex-end;
 }
 
-.logout img {
-    width: 40px;
-    height: 40px;
+.div_logout img {
+    width: 30px;
+    height: 30px;
 }
 
 .dash {
     width: 80%;
-    height: 640px;
+    height: 87vh;
     padding: 3%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
 }
 
-.dash .titulo{
+.dash .titulo {
     font-size: 30px;
+    align-self: start;
 }
 
 #kpis_dash {
@@ -128,9 +114,110 @@
     color: #fff;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 5px 2px 15px 2px #4E0976;
+    box-shadow: 5px 2px 15px 2px #4e09765c;
 }
 
 .kpi .resultados {
     font-size: 20px;
+}
+
+#graficos {
+    width: 45vw;
+    height: 45vh;
+    display: flex;
+    background-color: #e9def4;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 6px 4px 4px #4a0a6f56;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/*----------------------- inicio feedback -----------------*/
+.feedback {
+    width: 80%;
+    height: 80%;
+    background-color: #e9def4;
+    border-radius: 10px;
+    box-shadow: 6px 4px 4px #4a0a6f56;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#tabelaFeedback {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedUsuario {
+    border: 1px solid #4E0976;
+    border-radius: 10px;
+    width: 80%;
+    height: fit-content;
+    min-height: 18vh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 2%;
+    justify-content: space-evenly;
+    transition: .50s width ease-in-out;
+}
+
+.feedUsuario hr {
+    width: 100%;
+    border: 1px solid #4E0976;
+}
+
+.feedUsuario:hover {
+    width: 82%;
+}
+
+.apagarFeed {
+    width: 150px;
+    /* align-self: self-end; */
+    padding: 8px;
+    background-color: #4E0976;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #4E0976;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #BB72E6;
+}
+
+#aqui {
+    background-color: #bc72e683;
+    height: 6vh;
 }

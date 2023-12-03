@@ -3,11 +3,10 @@ function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var idUsuario = sessionStorage.ID_USUARIO;
-    var totalUsuario = sessionStorage.TOTAL_USUARIO;
 
     var usuario_nome = document.getElementById("usuario_nome");
 
-    if (email != null && nome != null && idUsuario != null && totalUsuario != null) {
+    if (email != null && nome != null && idUsuario != null) {
         usuario_nome.innerHTML = nome;
         perfil.style.display = "flex";
         link_login.style.display = "none";
@@ -30,10 +29,12 @@ function validarSessaoIndex() {
         perfil.style.display = "flex";
         link_login.style.display = "none";
         cadastro.style.display = "none";
+        feedback.style.display = "flex"
     } else {
         perfil.style.display = "none";
         link_login.style.display = "flex";
         cadastro.style.display = "flex";
+        feedback.style.display = "none"
     }
 }
 
