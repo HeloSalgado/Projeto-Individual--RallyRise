@@ -18,9 +18,21 @@ primary key (idResultado, fkUsuario),
 constraint fk_usuario foreign key (fkUsuario) references usuario(idUsuario)
 );
 
+create table feedback (
+idFeedback int primary key auto_increment,
+titulo varchar(20),
+descricao varchar(100),
+fkUsuario int,
+constraint fk__usuario foreign key (fkUsuario) references usuario(idUsuario)
+);
+
 select * from usuario;
 select * from resultadoQuiz;	
+select * from feedback;
 
+select  nome, titulo, descricao from usuario join feedback on fkUsuario = idUsuario;
+select count(idFeedback) from feedback;
+select count(idUsuario), DATE_FORMAT(dtHora,'%d-%m-%Y') Dia from resultadoQuiz join usuario on fkUsuario = idUsuario group by Dia;
 select max(idUsuario) from usuario group by idUsuario;
 select nome, TIMESTAMPDIFF(YEAR, dtNasc, now()) AS idade from usuario;
 select avg(TIMESTAMPDIFF(YEAR, dtNasc, now())) as Média_idade from usuario;
@@ -43,4 +55,4 @@ select nome from usuario where nome like 'm%';
   select TIMESTAMPDIFF(YEAR, dtNasc, now()) AS idade, 
             round(avg(pontuacao)) mediaPontos 
         from resultadoQuiz 
-        join usuario on fkUsuario = idUsuario group by idade;
+        join usuario on fkUsuario = idUsuario group by idade order by idade;
